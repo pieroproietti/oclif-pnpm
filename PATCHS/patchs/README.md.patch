@@ -1,0 +1,74 @@
+1a2,19
+> oclif-pnpm
+> ==========
+> 
+> A slightly modified version of [oclif](https://oclif.io/) to work with [pnpm](https://pnpm.io/) in addition to npm and yarn
+> 
+> My final idea is to create a PR on oclif and for this work to contribute to it, so I am trying to limit changes to the essentials.
+> 
+> I am using this version for my [penguins-eggs](https://github.com/pieroproietti/penguins-eggs) remastering tool and I can assure that it is basically usable with npm and yarn as well.
+> 
+> Suggestions, collaborations and testers are welcome!
+> 
+> Info: piero.proietti@gmail.com
+> 
+> Blog: https://penguins-eggs.net
+> 
+> Demo: https://www.youtube.com/watch?v=xLmnnArpJoc
+> 
+> ---
+12a31
+> 
+145,146c164
+< 
+<   This will clone the template repo 'oclif/hello-world' and update package properties
+---
+>   This will clone the template repo 'pieroproietti/hello-world' and update package properties
+149c167
+< _See code: [src/commands/generate.ts](https://github.com/oclif/oclif/blob/v3.2.1/src/commands/generate.ts)_
+---
+> _See code: [src/commands/generate.ts](https://github.com/pieroproietti/oclif/blob/v3.4.2-12/src/commands/generate.ts)_
+206c224
+< _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.12/src/commands/help.ts)_
+---
+> _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.20/src/commands/help.ts)_
+223c241
+< _See code: [src/commands/manifest.ts](https://github.com/oclif/oclif/blob/v3.2.1/src/commands/manifest.ts)_
+---
+> _See code: [src/commands/manifest.ts](https://github.com/pieroproietti/oclif/blob/v3.4.2-12/src/commands/manifest.ts)_
+247c265
+<   $ oclif pack macos -r <value> [-t <value>]
+---
+>   $ oclif pack macos -r <value> [-t <value>] [--targets <value>]
+251a270
+>   --targets=<value>      comma-separated targets to pack (e.g.: darwin-x64,darwin-arm64)
+323c342
+< _See code: [src/commands/promote.ts](https://github.com/oclif/oclif/blob/v3.2.1/src/commands/promote.ts)_
+---
+> _See code: [src/commands/promote.ts](https://github.com/pieroproietti/oclif/blob/v3.4.2-12/src/commands/promote.ts)_
+340d358
+< 
+342d359
+< 
+344d360
+< 
+346d361
+< 
+348d362
+< 
+349a364,365
+>   # Table of contents
+>   <!-- toc -->
+354c370
+< _See code: [src/commands/readme.ts](https://github.com/oclif/oclif/blob/v3.2.1/src/commands/readme.ts)_
+---
+> _See code: [src/commands/readme.ts](https://github.com/pieroproietti/oclif/blob/v3.4.2-12/src/commands/readme.ts)_
+377c393
+<   $ oclif upload macos -r <value>
+---
+>   $ oclif upload macos -r <value> [-t <value>]
+380c396,397
+<   -r, --root=<value>  (required) [default: .] path to oclif CLI root
+---
+>   -r, --root=<value>     (required) [default: .] path to oclif CLI root
+>   -t, --targets=<value>  comma-separated targets to upload (e.g.: darwin-x64,darwin-arm64)

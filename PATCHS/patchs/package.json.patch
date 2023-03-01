@@ -1,0 +1,37 @@
+2c2
+<   "name": "oclif",
+---
+>   "name": "oclif-pnpm",
+4c4
+<   "version": "3.4.3",
+---
+>   "version": "3.4.2-12",
+9c9
+<   "bugs": "https://github.com/oclif/oclif/issues",
+---
+>   "bugs": "https://github.com/pieroproietti/oclif-pnpm/issues",
+32c32
+<     "@oclif/test": "^2.2.12",
+---
+>     "@oclif/test": "^2.2.17",
+44a45
+>     "@types/yeoman-environment": "^2.10.8",
+79c80
+<   "homepage": "https://github.com/oclif/oclif",
+---
+>   "homepage": "https://github.com/pieroproietti/oclif-pnpm",
+124c125
+<   "repository": "oclif/oclif",
+---
+>   "repository": "pieroproietti/oclif-pnpm",
+127c128
+<     "devcli:lint": "eslint . --ext .ts --config .eslintrc",
+---
+>     "devcli:lint": "eslint . --ext .ts --config .eslintrc --fix",
+139a141
+>     "not_used_registry": "http://localhost:4873",
+143c145
+< }
+\ Manca newline alla fine del file
+---
+> }

@@ -1,0 +1,21 @@
+{
+  "ts-node": {
+    "transpileOnly": true
+  },
+  "compilerOptions": {
+    "declaration": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
+    "module": "commonjs",
+    "outDir": "./lib",
+    "rootDirs": [
+      "./src"
+    ],
+    "strict": true,
+    "lib": ["ES2019"],
+    "target": "es2017"
+  },
+  "include": [
+    "./src/**/*"
+  ]
+}

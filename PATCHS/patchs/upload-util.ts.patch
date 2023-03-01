@@ -1,0 +1,4 @@
+52c52
+<   return `${buildConfig.config.version.split('-')[0]}.${buildConfig.gitSha}-1`
+---
+>   return `${buildConfig.config.version.split('-')[0]}`

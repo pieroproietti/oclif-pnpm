@@ -1,0 +1,4 @@
+73c73
+<       await fs.remove(workspace)
+---
+>       await exec(`sudo rm -rf "${workspace}"`)

@@ -1,0 +1,21 @@
+5c5
+< const {execSync} = require('child_process')
+---
+> const { execSync } = require('child_process')
+7,13c7,14
+< let hasYarn = false
+< try {
+<   execSync('yarn -v', {stdio: 'ignore'})
+<   hasYarn = true
+< } catch {}
+< 
+< const pkgManager = hasYarn ? 'yarn' : 'npm run'
+---
+> const hasYarn = (cwd = process.cwd()) => (fs.existsSync(path.resolve(cwd,'yarn.lock')))
+> const hasPnpm = (cwd = process.cwd()) => (fs.existsSync(path.resolve(cwd, 'pnpm-lock.yaml')))
+> let pkgManager = 'npm'
+> if (hasPnpm) {
+>   pkgManager = 'pnpm'
+> } else if (hasYarn) {
+>   pkgManager = 'yarn'
+> }

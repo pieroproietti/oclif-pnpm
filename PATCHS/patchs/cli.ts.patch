@@ -1,0 +1,89 @@
+16a17,28
+> let hasNpm = false
+> try {
+>   execSync('npm -v', {stdio: 'ignore'})
+>   hasNpm = true
+> } catch {}
+> 
+> let hasPnpm = false
+> try {
+>   execSync('pnpm -v', {stdio: 'ignore'})
+>   hasPnpm = true
+> } catch {}
+> 
+20a33
+>     npm: boolean,
+21a35
+>     pnpm: boolean;
+49a64
+>   npm!: boolean
+50a66
+>   pnpm!: boolean
+60a77
+>       npm: hasNpm,
+61a79
+>       pnpm: hasPnpm,
+70c88
+<     execSync(`git clone https://github.com/oclif/hello-world.git "${path.resolve(this.name)}"`)
+---
+>     execSync(`git clone https://github.com/pieroproietti/hello-world.git "${path.resolve(this.name)}"`)
+71a90,95
+>     const curDir = process.cwd()
+>     process.chdir(path.resolve(this.name))
+>     execSync('git init -b main')
+>     execSync('git add -A')
+>     execSync('git commit -m \'first commit\'')
+>     process.chdir(curDir)
+119a144,159
+>       const pms = [
+>         {flock: 'package-lock.json', name: 'npm'},
+>         {flock: 'yarn.lock', name: 'yarn'},
+>         {flock: 'pnpm-lock.yaml', name: 'pnpm'},
+>       ]
+> 
+>       let pm = ''
+>       let lock = ''
+>       for (const elem of pms) {
+>         const isThis = (cwd = process.cwd()) => (fs.existsSync(path.resolve(cwd, elem.flock)))
+>         if (isThis()) {
+>           pm = elem.name
+>           lock = elem.flock
+>         }
+>       }
+> 
+176a217
+>             {name: 'pnpm', value: 'pnpm'},
+178c219
+<           default: () => this.options.yarn || hasYarn ? 1 : 0,
+---
+>           default: () => 0,
+186a228
+>         npm: this.answers.pkg === 'npm',
+187a230
+>         pnpm: this.answers.pkg === 'pnpm',
+193c236,243
+<     this.env.options.nodePackageManager = this.yarn ? 'yarn' : 'npm'
+---
+>     this.pnpm = this.options.pnpm
+>     if (this.yarn) {
+>       this.env.options.nodePackageManager = 'yarn'
+>     } else if (this.pnpm) {
+>       this.env.options.nodePackageManager = 'pnpm'
+>     } else {
+>       this.env.options.nodePackageManager = 'npm'
+>     }
+211a262,271
+>     this.pjson.scripts = {
+>       build: 'shx rm -rf dist && tsc -b',
+>       deb: 'oclif pack:deb',
+>       lint: 'eslint . --ext .ts --config .eslintrc',
+>       postpack: 'shx rm -f oclif.manifest.json',
+>       posttest: `${this.env.options.nodePackageManager} run lint`,
+>       prepack: `${this.env.options.nodePackageManager} run build && oclif manifest && oclif readme`,
+>       test: 'mocha --forbid-only "test/**/*.test.ts"',
+>       version: 'oclif readme && git add README.md',
+>     }
+240c300
+<       this.yarn ? '/package-lock.json' : '/yarn.lock',
+---
+>       this.pnpm ? '/package-lock.json' : '/pnpm-lock.yaml',

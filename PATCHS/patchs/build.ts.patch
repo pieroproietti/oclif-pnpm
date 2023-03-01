@@ -1,0 +1,107 @@
+12a13
+> import {string} from '@oclif/core/lib/parser'
+33c34
+<     const {stdout} = await exec('npm pack --unsafe-perm', {cwd: c.root})
+---
+>     const {stdout} = await exec('pnpm pack', {cwd: c.root})
+55a57
+>     console.log('updatePJSON')
+66,71c68,91
+<     const yarnRoot = findYarnWorkspaceRoot(c.root) || c.root
+<     if (fs.existsSync(path.join(yarnRoot, 'yarn.lock'))) {
+<       await fs.copy(path.join(yarnRoot, 'yarn.lock'), path.join(c.workspace(), 'yarn.lock'))
+<       await exec('yarn --no-progress --production --non-interactive', {cwd: c.workspace()})
+<     } else {
+<       const lockpath = fs.existsSync(path.join(c.root, 'package-lock.json')) ?
+---
+>     console.log('addDependencies')
+> 
+>     const pms = [
+>       {flock: 'package-lock.json', name: 'npm'},
+>       {flock: 'yarn.lock', name: 'yarn'},
+>       {flock: 'pnpm-lock.yaml', name: 'pnpm'},
+>     ]
+> 
+>     let pm = ''
+>     let lock = ''
+>     for (const elem of pms) {
+>       const isThis = (cwd = process.cwd()) => (fs.existsSync(path.resolve(cwd, elem.flock)))
+>       if (isThis()) {
+>         pm = elem.name
+>         lock = elem.flock
+>       }
+>     }
+> 
+>     log(`Using package manager: ${pm}`)
+> 
+>     let lockpath = ''
+>     switch (pm) {
+>     case 'npm': {
+>       lockpath = fs.existsSync(path.join(c.root, 'package-lock.json')) ?
+74c94,115
+<       await fs.copy(lockpath, path.join(c.workspace(), path.basename(lockpath)))
+---
+> 
+>       break
+>     }
+> 
+>     case 'yarn': {
+>       lockpath = findYarnWorkspaceRoot(c.root) || c.root
+> 
+>       break
+>     }
+> 
+>     case 'pnpm': {
+>       lockpath = path.join(c.root, 'pnpm-lock.yaml')
+> 
+>       break
+>     }
+>     // No default
+>     }
+> 
+>     console.log('lockpath: ' + lockpath)
+>     await fs.copy(lockpath, path.join(c.workspace(), path.basename(lockpath)))
+>     switch (pm) {
+>     case 'npm': {
+75a117,132
+> 
+>       break
+>     }
+> 
+>     case 'yarn': {
+>       await exec('yarn --no-progress --production --non-interactive', {cwd: c.workspace()})
+> 
+>       break
+>     }
+> 
+>     case 'pnpm': {
+>       await exec('pnpm install --production', {cwd: c.workspace()})
+> 
+>       break
+>     }
+>     // No default
+81,82c138,139
+<     const yarnRoot = findYarnWorkspaceRoot(c.root) || c.root
+<     const yarn = fs.existsSync(path.join(yarnRoot, 'yarn.lock'))
+---
+>     const hasYarn = (cwd = process.cwd()) => (fs.existsSync(path.resolve(cwd, 'yarn.lock')))
+>     const hasPnpm = (cwd = process.cwd()) => (fs.existsSync(path.resolve(cwd, 'pnpm-lock.yaml')))
+84,86c141,148
+<       yarn ?
+<         await exec('yarn run pretarball', {cwd: c.workspace()}) :
+<         await exec('npm run pretarball', {cwd: c.workspace()})
+---
+>       let cmd = 'npm run pretarball'
+>       if (hasPnpm()) {
+>         cmd = 'pnpm run pretarball'
+>       } else if (hasYarn()) {
+>         cmd = 'yarn run pretarball'
+>       }
+> 
+>       await exec(cmd, {cwd: c.workspace()})
+90c152
+<   const buildTarget = async (target: { platform: Interfaces.PlatformTypes; arch: Interfaces.ArchTypes}) => {
+---
+>   const buildTarget = async (target: { platform: Interfaces.PlatformTypes; arch: Interfaces.ArchTypes }) => {
+111a174
+> 

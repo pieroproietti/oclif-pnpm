@@ -1,0 +1,4 @@
+5c5
+< This will clone the template repo 'oclif/hello-world' and update package properties`
+---
+> This will clone the template repo 'pieroproietti/hello-world' and update package properties`
