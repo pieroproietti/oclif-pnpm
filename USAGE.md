@@ -2,8 +2,9 @@
 
 This package is a modified version of [oclif](https://github.com/oclif/oclif) to be used on [pnpm](https://pnpm.io/), instead of npm or yarn.
 
-Unfortunately, it suffers from a trying lack of updating, I don't have the time to keep up with all the modifications of the excellent oclif and I'm looking for help or a different solution, which could - perhaps - be represented by [pastel](https://github.com/vadimdemedes/pastel).
+Unfortunately, it suffers from a trying lack of updating, I don't have the time to keep up with all the modifications of the excellent oclif and I'm looking for help or a different solution.
 
+Actully looking to [pastel](https://github.com/vadimdemedes/pastel) the future version.
 
 ## create application
 `
