@@ -38,21 +38,21 @@ pieroproietti
 ```
 
 ## install packages
-`
+```
 cd my-app
 pnpm i
-`
+```
 
 ## build
-`
+```
 cd my-app
 pnpm build
-`
+```
 
 
 ## create deb package
 
-`
+```
 cd my-app
 pnpm deb
-`
+```
