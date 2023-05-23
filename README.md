@@ -14,6 +14,9 @@ Info: piero.proietti@gmail.com
 
 Blog: https://penguins-eggs.net
 
+
+Usage: [USAGE.md](./USAGE.md)
+
 Demo: https://www.youtube.com/watch?v=xLmnnArpJoc
 
 ---
