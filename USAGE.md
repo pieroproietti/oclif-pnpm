@@ -4,7 +4,7 @@ This package is a modified version of [oclif](https://github.com/oclif/oclif) to
 
 Unfortunately, it suffers from a trying lack of updating, I don't have the time to keep up with all the modifications of the excellent oclif and I'm looking for help or a different solution.
 
-Actully looking to [pastel](https://github.com/vadimdemedes/pastel) the future version.
+Actully looking to [pastel](https://github.com/vadimdemedes/pastel), the future version.
 
 ## create application
 `
